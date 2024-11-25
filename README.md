@@ -1,35 +1,41 @@
-To send emails from a Spring Boot application using Gmail, you'll need to use an App Password if you have enabled Two-Factor Authentication (2FA) for your Google account. Here's how you can generate an App Password to use in your Spring Boot application:
+# Spring Boot Email Service
 
-Steps to Get an App Password from Google:
-Ensure Two-Factor Authentication (2FA) is Enabled:
+## Overview
+This project is a Spring Boot application that sends emails using Gmail's SMTP server. It demonstrates how to configure Spring Boot to send email notifications using Gmail, including setting up an **App Password** for secure authentication when **Two-Factor Authentication (2FA)** is enabled.
 
-Go to your Google Account.
-Under Security, ensure that 2-Step Verification is enabled.
-If it's not enabled, follow the prompts to enable 2-Step Verification.
-Generate an App Password:
+## Features
+- Email sending functionality using Gmail SMTP.
+- Configurable through Spring Boot properties.
+- Secure authentication with Gmail using App Passwords.
 
-Once 2FA is enabled, go to the Security section of your Google Account.
-Under Signing in to Google, find App passwords and click on it.
-You may be prompted to re-enter your password.
-In the App passwords section, select the following:
-Select App: Choose Mail (or any other option related to your Spring Boot app, like "Other (Custom name)").
-Select Device: Choose Other and type a custom name (e.g., "Spring Boot App").
-Click on Generate.
-A 16-character App Password will be displayed. This is the password you'll use for sending emails from your Spring Boot application.
-Configure Spring Boot to Use the App Password:
+## Requirements
+- **Java 8 or higher**
+- **Spring Boot 2.x**
+- **Google Account with Two-Factor Authentication (2FA) enabled**
+- **Maven** or **Gradle** for building the application.
 
-In your application.properties or application.yml file, configure your Gmail SMTP settings with the generated App Password.
-For application.properties:
+## Steps to Get an App Password from Google
 
-properties
-Copy code
+### 1. Enable Two-Factor Authentication (2FA)
+To use Gmail's SMTP server securely, ensure that your Google Account has **2-Step Verification** enabled.
+- Go to [Google Account Security](https://myaccount.google.com/security).
+- Under **Signing in to Google**, enable **2-Step Verification**.
+  
+### 2. Generate an App Password
+After enabling 2FA, you can generate an **App Password** for your Spring Boot application:
+- Go to [Google Account App Passwords](https://myaccount.google.com/apppasswords).
+- Select **Mail** as the app and choose **Other** as the device.
+- Give the device a custom name like "Spring Boot App" and click **Generate**.
+- Copy the 16-character **App Password** that is generated.
+
+### 3. Configure Spring Boot Application
+Now, configure your Spring Boot application to use the Gmail SMTP server with the generated App Password. 
+
+#### **application.properties**
+```properties
 spring.mail.host=smtp.gmail.com
 spring.mail.port=587
 spring.mail.username=your-email@gmail.com
 spring.mail.password=your-app-password
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
-For application.yml:
-
-
-Send an Email Using Spring Boot: Once the App Password is configured in your application.properties or application.yml file, you can use the JavaMailSender in your Spring Boot service to send emails as usual.
